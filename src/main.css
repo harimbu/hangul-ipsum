@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  color: inherit;
+  text-decoration: none;
+}
+
+body {
+  line-height: 1.4;
+  color: #111;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 42px;
+  text-align: center;
+  margin: 50px 0;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 7px 14px;
+  background-color: #0c866c;
+  color: #fff;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* control */
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.control > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+}
+
+.control input {
+  padding: 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  outline: none;
+  width: 50px;
+}
+
+.control select {
+  padding: 7px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  outline: none;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+  font-size: 16px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.text {
+  margin: 36px 0;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 15px;
+  color: #555;
+}
