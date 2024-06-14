@@ -60,7 +60,7 @@ export default function App() {
       </header>
       <div className='control'>
         <div>
-          <label>소설</label>
+          <label>작품</label>
           <select value={novel} onChange={handleChange}>
             <option value='/book1.txt'>청춘예찬</option>
             <option value='/book2.txt'>메밀꽃 필 무렵</option>
