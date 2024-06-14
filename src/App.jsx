@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import TextBox from './components/TextBox'
+import Footer from './components/Footer'
 
 export default function App() {
   const [novel, setNovel] = useState('/book1.txt')
@@ -23,8 +24,8 @@ export default function App() {
     const res = await fetch(novel)
     const str = await res.text()
     const words = str
-      // .replace(/[^가-힣\s]/g, '')
-      .replace(/["'.]/g, '')
+      .replace(/[^가-힣\s]/g, '')
+      // .replace(/["'.]/g, '')
       .split(' ')
       .map(word => word.trim())
 
@@ -61,8 +62,9 @@ export default function App() {
         <div>
           <label>소설</label>
           <select value={novel} onChange={handleChange}>
-            <option value='/book1.txt'>메밀꽃 필 무렵</option>
-            <option value='/book2.txt'>입숨로렘</option>
+            <option value='/book1.txt'>청춘예찬</option>
+            <option value='/book2.txt'>메밀꽃 필 무렵</option>
+            <option value='/book3.txt'>운수좋은 날</option>
           </select>
         </div>
         <div>
@@ -86,7 +88,7 @@ export default function App() {
           <TextBox key={index} text={item} />
         ))}
       </div>
-      <footer>harimbu@gmail.com</footer>
+      <Footer />
     </>
   )
 }
