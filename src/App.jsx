@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import TextBox from './components/TextBox'
-import book1 from '/book1.txt'
 
 export default function App() {
-  const [selectedOption, setSelectedOption] = useState('3')
-  const [count, setCount] = useState(100)
+  const [novel, setNovel] = useState('/book1.txt')
+  const [paraCount, setParaCount] = useState('3')
+  const [wordCount, setWordCount] = useState(100)
   const [sentences, setSentences] = useState([])
 
   // 함수: 랜덤 단어 10개 선택 (중복 제거)
@@ -20,22 +20,23 @@ export default function App() {
   }
 
   async function fetchWord() {
-    const res = await fetch(book1)
+    const res = await fetch(novel)
     const str = await res.text()
     const words = str
-      .replace(/[^가-힣\s]/g, '')
+      // .replace(/[^가-힣\s]/g, '')
+      .replace(/["'.]/g, '')
       .split(' ')
       .map(word => word.trim())
 
-    const sentences = []
-    if (count > 500) {
+    if (wordCount > 500) {
       alert('단어수는 500단어까지 설정할 수 있습니다.')
-      setCount(100)
+      setWordCount(100)
       return
     }
 
-    for (let i = 0; i < parseInt(selectedOption); i++) {
-      const selectedWords = selectRandomWords(words.slice(), count) // words.slice()를 사용하여 words 배열 복사본 생성
+    const sentences = []
+    for (let i = 0; i < parseInt(paraCount); i++) {
+      const selectedWords = selectRandomWords(words.slice(), wordCount) // words.slice()를 사용하여 words 배열 복사본 생성
       const makedSentence = selectedWords.join(' ') + '.'
       sentences.push(makedSentence)
     }
@@ -47,7 +48,8 @@ export default function App() {
   }, [])
 
   function handleChange(e) {
-    setSelectedOption(e.target.value)
+    console.log(e.target.value)
+    setNovel(e.target.value)
   }
 
   return (
@@ -57,24 +59,19 @@ export default function App() {
       </header>
       <div className='control'>
         <div>
-          <label htmlFor=''>소설</label>
-          <select name='' id=''>
-            <option value='1'>청춘예찬</option>
-            <option value='2'>메밀꽃 필 무렵</option>
-            <option value='3'>필론의 돼지</option>
+          <label>소설</label>
+          <select value={novel} onChange={handleChange}>
+            <option value='/book1.txt'>메밀꽃 필 무렵</option>
+            <option value='/book2.txt'>입숨로렘</option>
           </select>
         </div>
         <div>
-          <label htmlFor=''>단어수</label>
-          <input
-            type='text'
-            value={count}
-            onChange={e => setCount(e.target.value)}
-          />
+          <label>단어수</label>
+          <input type='text' value={wordCount} onChange={e => setWordCount(e.target.value)} />
         </div>
         <div>
-          <label htmlFor=''>문단수</label>
-          <select value={selectedOption} onChange={handleChange}>
+          <label>문단수</label>
+          <select value={paraCount} onChange={e => setParaCount(e.target.value)}>
             <option value='1'>1</option>
             <option value='2'>2</option>
             <option value='3'>3</option>
