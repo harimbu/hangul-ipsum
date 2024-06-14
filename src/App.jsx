@@ -8,7 +8,6 @@ export default function App() {
   const [wordCount, setWordCount] = useState(100)
   const [sentences, setSentences] = useState([])
 
-  // 함수: 랜덤 단어 10개 선택 (중복 제거)
   function selectRandomWords(words, n) {
     const selectedWords = []
     for (let i = 0; i < n; i++) {
@@ -24,7 +23,7 @@ export default function App() {
     const res = await fetch(novel)
     const str = await res.text()
     const words = str
-      .replace(/[^가-힣\s]/g, '')
+      .replace(/[^가-힣\s]/g, '') // 한글을 제외한 모든 부호 제거
       // .replace(/["'.]/g, '')
       .split(' ')
       .map(word => word.trim())
@@ -37,7 +36,7 @@ export default function App() {
 
     const sentences = []
     for (let i = 0; i < parseInt(paraCount); i++) {
-      const selectedWords = selectRandomWords(words.slice(), wordCount) // words.slice()를 사용하여 words 배열 복사본 생성
+      const selectedWords = selectRandomWords(words.slice(), wordCount)
       const makedSentence = selectedWords.join(' ') + '.'
       sentences.push(makedSentence)
     }
@@ -48,11 +47,6 @@ export default function App() {
     fetchWord()
   }, [])
 
-  function handleChange(e) {
-    console.log(e.target.value)
-    setNovel(e.target.value)
-  }
-
   return (
     <>
       <header>
@@ -61,7 +55,7 @@ export default function App() {
       <div className='control'>
         <div>
           <label>작품</label>
-          <select value={novel} onChange={handleChange}>
+          <select value={novel} onChange={() => setNovel(e.target.value)}>
             <option value='/book1.txt'>청춘예찬</option>
             <option value='/book2.txt'>메밀꽃 필 무렵</option>
             <option value='/book3.txt'>운수좋은 날</option>
