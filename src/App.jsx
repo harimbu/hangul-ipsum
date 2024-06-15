@@ -46,6 +46,7 @@ export default function App() {
       <header>
         <h1>한글입숨</h1>
       </header>
+      
       <div className='control'>
         <div>
           <label>작품</label>
@@ -82,11 +83,13 @@ export default function App() {
           </div>
         </div>
       )}
+
       <div className='container'>
         {sentences.map((item, index) => (
           <TextBox key={index} text={item} />
         ))}
       </div>
+      
       <Footer />
     </>
   )
