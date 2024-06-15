@@ -20,7 +20,7 @@ export default function Footer() {
             </div>
             <dl className='info'>
               <dt>1. 청춘예찬</dt>
-              <dd>- 요약정보 : 1929년 민태원의 수필 청춘예찬</dd>
+              <dd>- 요약정보 : 1929년 발표한 민태원의 수필</dd>
               <dd>- 이용조건 : 만료저작물, 자유이용</dd>
               <dt>2. 메밀꽃 필 무렵</dt>
               <dd>- 요약정보 : 1936년 발표한 이효석의 단편소설</dd>

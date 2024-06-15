@@ -26,13 +26,7 @@ export default function App() {
       .replace(/[^가-힣\s]/g, '') // 한글을 제외한 모든 부호 제거
       // .replace(/["'.]/g, '')
       .split(' ')
-      .map(word => word.trim())
-
-    if (wordCount > 500) {
-      alert('단어수는 500단어까지 설정할 수 있습니다.')
-      setWordCount(100)
-      return
-    }
+      .map(word => word.trim())   
 
     const sentences = []
     for (let i = 0; i < parseInt(paraCount); i++) {
@@ -55,18 +49,18 @@ export default function App() {
       <div className='control'>
         <div>
           <label>작품</label>
-          <select value={novel} onChange={() => setNovel(e.target.value)}>
+          <select value={novel} onChange={e => setNovel(e.target.value)}>
             <option value='/book1.txt'>청춘예찬</option>
             <option value='/book2.txt'>메밀꽃 필 무렵</option>
             <option value='/book3.txt'>운수좋은 날</option>
           </select>
         </div>
         <div>
-          <label>단어수</label>
+          <label>단어</label>
           <input type='text' value={wordCount} onChange={e => setWordCount(e.target.value)} />
         </div>
         <div>
-          <label>문단수</label>
+          <label>문단</label>
           <select value={paraCount} onChange={e => setParaCount(e.target.value)}>
             <option value='1'>1</option>
             <option value='2'>2</option>
@@ -77,6 +71,17 @@ export default function App() {
         </div>
         <button onClick={() => fetchWord()}>만들기</button>
       </div>
+
+      {wordCount > 500 && (
+        <div className="modal">
+          <div className="inner">
+            <p>단어수는 최대 <b>500단어</b> 입니다.</p>
+            <div className='btn'>
+              <button onClick={() => setWordCount(100)}>확인</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className='container'>
         {sentences.map((item, index) => (
           <TextBox key={index} text={item} />
